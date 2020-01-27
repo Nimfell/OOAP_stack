@@ -1,43 +1,43 @@
-/*
-реализовано ограничение размерности стека:
-введен максимальный размер стека;
-дополнен конструктор по умолчанию и введен конструктор с размером;
-команда push() расширена и введены стусы её выполнения;
-добавлен запрос get_push_status().
+п»ї/*
+СЂРµР°Р»РёР·РѕРІР°РЅРѕ РѕРіСЂР°РЅРёС‡РµРЅРёРµ СЂР°Р·РјРµСЂРЅРѕСЃС‚Рё СЃС‚РµРєР°:
+РІРІРµРґРµРЅ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ СЃС‚РµРєР°;
+РґРѕРїРѕР»РЅРµРЅ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ Рё РІРІРµРґРµРЅ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ СЂР°Р·РјРµСЂРѕРј;
+РєРѕРјР°РЅРґР° push() СЂР°СЃС€РёСЂРµРЅР° Рё РІРІРµРґРµРЅС‹ СЃС‚СѓСЃС‹ РµС‘ РІС‹РїРѕР»РЅРµРЅРёСЏ;
+РґРѕР±Р°РІР»РµРЅ Р·Р°РїСЂРѕСЃ get_push_status().
 */
 
 
 class BoundedStack <T>
 
-  // скрытые поля
+  // СЃРєСЂС‹С‚С‹Рµ РїРѕР»СЏ
   private List<T> stack;   
   private int peek_status; 
   private int pop_status;  
-  private int push_status;          // статус команды add() 
-  private int stack_size;           // ограничение размера стека
-  private const int MAX_SIZE = 32;  // размер по умолчанию
+  private int push_status;          // СЃС‚Р°С‚СѓСЃ РєРѕРјР°РЅРґС‹ add() 
+  private int stack_size;           // РѕРіСЂР°РЅРёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР° СЃС‚РµРєР°
+  private const int MAX_SIZE = 32;  // СЂР°Р·РјРµСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
-  // интерфейс класса, реализующий АТД Stack  
+  // РёРЅС‚РµСЂС„РµР№СЃ РєР»Р°СЃСЃР°, СЂРµР°Р»РёР·СѓСЋС‰РёР№ РђРўР” Stack  
   public const int POP_NIL = 0;
   public const int POP_OK = 1;
   public const int POP_ERR = 2;
   public const int PEEK_NIL = 0;
   public const int PEEK_OK = 1;
   public const int PEEK_ERR = 2;
-  public const int PUSH_NIL = 0; // без статуса 
-  public const int PUSH_OK = 1;  // добавление выполнено
-  public const int PUSH_ERR = 2; // стек переполнен
+  public const int PUSH_NIL = 0; // Р±РµР· СЃС‚Р°С‚СѓСЃР° 
+  public const int PUSH_OK = 1;  // РґРѕР±Р°РІР»РµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ
+  public const int PUSH_ERR = 2; // СЃС‚РµРє РїРµСЂРµРїРѕР»РЅРµРЅ
 
-  public void BoundedStack () // конструктор
+  public void BoundedStack () // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     clear()
     stack_size = MAX_SIZE 
 
-  public void BoundedStack (int size) // конструктор с размером
+  public void BoundedStack (int size) // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ СЂР°Р·РјРµСЂРѕРј
     clear()
     stack_size = size
 
   public void push(T value)
-    if size() <= stack_size // если стек не заполнен
+    if size() <= stack_size // РµСЃР»Рё СЃС‚РµРє РЅРµ Р·Р°РїРѕР»РЅРµРЅ
       stack.Append(value)
       push_status = POP_OK
     else
@@ -51,9 +51,9 @@ class BoundedStack <T>
       pop_status = POP_ERR
 
   public void clear()
-    stack = [ ] // пустой список/стек
+    stack = [ ] // РїСѓСЃС‚РѕР№ СЃРїРёСЃРѕРє/СЃС‚РµРє
 
-    // начальные статусы для предусловий peek() и pop()
+    // РЅР°С‡Р°Р»СЊРЅС‹Рµ СЃС‚Р°С‚СѓСЃС‹ РґР»СЏ РїСЂРµРґСѓСЃР»РѕРІРёР№ peek() Рё pop()
     peek_status = PEEK_NIL
     pop_status  = POP_NIL
     push_status = PUSH_NIL
@@ -70,7 +70,7 @@ class BoundedStack <T>
   public int size()
     return stack.Length()
 
-  // запросы статусов
+  // Р·Р°РїСЂРѕСЃС‹ СЃС‚Р°С‚СѓСЃРѕРІ
   public int get_pop_status()
     return pop_status
 
