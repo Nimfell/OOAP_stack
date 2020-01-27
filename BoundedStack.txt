@@ -1,0 +1,81 @@
+/*
+реализовано ограничение размерности стека:
+введен максимальный размер стека;
+дополнен конструктор по умолчанию и введен конструктор с размером;
+команда push() расширена и введены стусы еЄ выполнени€;
+добавлен запрос get_push_status().
+*/
+
+
+class BoundedStack <T>
+
+  // скрытые пол€
+  private List<T> stack;   
+  private int peek_status; 
+  private int pop_status;  
+  private int push_status;          // статус команды add() 
+  private int stack_size;           // ограничение размера стека
+  private const int MAX_SIZE = 32;  // размер по умолчанию
+
+  // интерфейс класса, реализующий ј“ƒ Stack  
+  public const int POP_NIL = 0;
+  public const int POP_OK = 1;
+  public const int POP_ERR = 2;
+  public const int PEEK_NIL = 0;
+  public const int PEEK_OK = 1;
+  public const int PEEK_ERR = 2;
+  public const int PUSH_NIL = 0; // без статуса 
+  public const int PUSH_OK = 1;  // добавление выполнено
+  public const int PUSH_ERR = 2; // стек переполнен
+
+  public void BoundedStack () // конструктор
+    clear()
+    stack_size = MAX_SIZE 
+
+  public void BoundedStack (int size) // конструктор с размером
+    clear()
+    stack_size = size
+
+  public void push(T value)
+    if size() <= stack_size // если стек не заполнен
+      stack.Append(value)
+      push_status = POP_OK
+    else
+      push_status = POP_ERR    
+
+  public void pop()
+    if size() > 0
+      stack.RemoveAt(-1)
+      pop_status = POP_OK
+    else
+      pop_status = POP_ERR
+
+  public void clear()
+    stack = [ ] // пустой список/стек
+
+    // начальные статусы дл€ предусловий peek() и pop()
+    peek_status = PEEK_NIL
+    pop_status  = POP_NIL
+    push_status = PUSH_NIL
+
+  public T peek()
+    if size() > 0
+      result = stack[-1]
+      peek_status = PEEK_OK
+    else
+      result = 0
+      peek_status = PEEK_ERR
+    return result
+
+  public int size()
+    return stack.Length()
+
+  // запросы статусов
+  public int get_pop_status()
+    return pop_status
+
+  public int get_peek_status()
+    return peek_status
+
+  public int get_push_status()
+    return push_status
