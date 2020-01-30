@@ -1,8 +1,8 @@
-﻿/*
+﻿
 // ======================================================== 
-2.1 Опишите АТД LinkedList с предложенным набором операций.
+// 2.1 Опишите АТД LinkedList с предложенным набором операций.
 // ======================================================== 
- * 
+  
 abstract class LinkedList<T>
 {
     // ================================================ 
@@ -10,19 +10,18 @@ abstract class LinkedList<T>
 
     public enum status_cmd
     {
-        head,
-        tail,
-        right,
-        put_right,
-        put_left,
-        remove,
-        add_tail,
-        replace,
-        find,
-        remove_all,
-        count_st
+        HEAD,
+        TAIL,
+        RIGHT,
+        PUT_RIGHT,
+        PUT_LEFT,
+        REMOVE,
+        ADD_TAIL,
+        REPLACE,
+        FIND,
+        REMOVE_ALL,
+        GET_COMMAND
     }
-    private int[] command_status; // с размером count_st
 
     public const int NIL = 0; // команда не вызывалась
     public const int OK = 1;  // команда отработала нормально
@@ -93,9 +92,9 @@ abstract class LinkedList<T>
     public bool is_value; //-- установлен ли курсор на какой-либо узел в списке (по сути, непустой ли список).
 
     // предусловие: запрашиваемый статус команды есть в перечислении
-    public int get_last_command_status(int command); // возвращает статус выполнения запрашиваемой команды.
+    public int get_command_status(int command); // возвращает статус выполнения запрашиваемой команды.
 }
- */
+ 
 
 /*
  // ======================================================== 
