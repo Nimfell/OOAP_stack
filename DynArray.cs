@@ -23,8 +23,11 @@ public class DynArray<T>
     //              возможно сжатие буфера capacity.
     public void remove(int index);
 
-    //запросы
+    // предусловие: индекс элемента входит в размерность массива count. включительно 
+    // постусновие: изменено значение i-ого элемента
+    public void change(int value, int index);
 
+    //запросы:
     // предусловие: индекс элемента входит в размерность массива count. включительно 
     public int get_item(int index);
     public int get_count();
@@ -33,6 +36,7 @@ public class DynArray<T>
     public bool get_insert_status();
     public bool get_remove_status();
     public bool get_item_status();
+    public bool get_change_status();
 }*/
 
 using System;
@@ -50,6 +54,7 @@ namespace DynArray
         private bool GET_ITEM_STATUS;
         private bool INSERT_STATUS;
         private bool REMOVE_STATUS;
+        private bool CHANGE_STATUS;
 
         // конструктор: -----------------------------
         public DynArray()
@@ -59,6 +64,7 @@ namespace DynArray
             GET_ITEM_STATUS = false;
             INSERT_STATUS = false;
             REMOVE_STATUS = false;
+            CHANGE_STATUS = false;
         }
 
         // команды: ---------------------------------        
@@ -126,6 +132,17 @@ namespace DynArray
             }
         }
 
+         public void change(int value, int index)
+         {
+            if (index >= count)
+                CHAHGE_STATUS = false; //item was not found
+            else
+            {
+                array[index] = value;
+                CHAHGE_STATUS = true;
+            }
+         }
+
         //запросы: ----------------------------------    
         public int get_item(int index)
         {
@@ -152,6 +169,10 @@ namespace DynArray
 
         public bool get_remove_ststus()
         { return REMOVE_STATUS; }
+
+        public bool get_change_status()
+        { return CHANGE_STATUS; }
+             
     }
 }
 
