@@ -188,13 +188,13 @@ class ParentQueue<T>
     public bool is_get_head();
 }
 
-class ATD_Queue<T>
+class ATD_Queue<T> : ParentQueue<T>
 {
     //=== Конструктор: ============================
     public ATD_Queue();
 }
 
-class ATD_Deque<T>
+class ATD_Deque<T> : ParentQueue<T>
 {
     //=== Конструктор: ============================
 
